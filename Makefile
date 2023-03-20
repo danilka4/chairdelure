@@ -23,12 +23,12 @@ clean:
 
 ## Lint using ruff
 ruff:
-	ruff .
+	nbqa ruff .
 
 ## Format files using black
 format:
-	ruff . --fix
-	black .
+	nbqa ruff . --fix
+	nbqa black .
 
 ## Run tests
 test:
