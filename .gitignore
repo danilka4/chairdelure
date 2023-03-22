@@ -46,6 +46,9 @@ ipython_config.py
 # pyenv
 .python-version
 
+# pycache
+__pycache__/
+
 # Celery stuff
 celerybeat-schedule
 celerybeat.pid
