@@ -12,3 +12,7 @@ That way it is not tracked by git and the shell script works.
 ```shell
 (.env) $ make install-dev
 ```
+
+## Models
+
+The model for the PCA can be found in the notebooks directory while the Markov model can be found in the test directory as "test.py"
