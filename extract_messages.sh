@@ -15,15 +15,22 @@ echo "ID,Timestamp,Contents,Attachments" > $1
 unzip package.zip
 
 
-cat messages/*/messages.csv | grep -v ID,Timestamp,Contents,Attachments >> $1
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    cat package/messages/*/messages.csv | grep -v ID,Timestamp,Contents,Attachments >> $1
 
-rm -rf account
-rm -rf activities_e
-rm -rf activities_w
-rm -rf activity
-rm -rf messages
-rm -rf programs
-rm -rf servers
-rm README.txt
+    rm -rf package/
+    rm -rf __MACOSX/
+else
+    cat messages/*/messages.csv | grep -v ID,Timestamp,Contents,Attachments >> $1
+
+    rm -rf account
+    rm -rf activities_e
+    rm -rf activities_w
+    rm -rf activity
+    rm -rf messages
+    rm -rf programs
+    rm -rf servers
+    rm README.txt
+fi
 
 cd ..
