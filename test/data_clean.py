@@ -1,10 +1,11 @@
 import csv
-from datetime import datetime
 import json
 import re
+from datetime import datetime
+
 import emoji
 
-filename = 'molly'
+filename = 'output'
 
 def read_csv(filename):
     with open(filename, 'r') as f:
@@ -23,7 +24,7 @@ data = [msg for time, msg in data if time.year >= 2022]
 
 # Cleaning methods
 def remove_tags_links(s):
-    s = re.sub(r"<(@|#)[!]?[0-9]+>", "", s)
+    s = re.sub(r"<(@|#|&)[!]?[0-9]+>", "", s)
     s = re.sub(r"(www|http[s]*)\S+\w?", "", s)
     return s
 
@@ -98,6 +99,9 @@ data = [remove_extra_spaces(message) for message in data]
 # lowercase
 data = [message.lower() for message in data]
 
+# removes non-ascii characters
+data = [message.encode('ascii',errors='ignore').decode() for message in data]
+
 # Shuffle data
 import random
 random.seed(369)
@@ -145,6 +149,15 @@ def get_cases(data, frequencies):
                 'frequency': frequency
             })
     return cases
+
+if input('Create unique cases? ') == 'y':
+    train_cases = get_cases(train, word_frequencies)
+    # val_cases = get_cases(val, word_frequencies)
+    test_cases = get_cases(test, word_frequencies)
+
+    print(f'Train: {len(train_cases)}')
+    # print(f'Val: {len(val_cases)}')
+    print(f'Test: {len(test_cases)}')
 
 file_type = input('File Type: ')
 
