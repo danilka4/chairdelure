@@ -98,19 +98,35 @@ data = [remove_extra_spaces(message) for message in data]
 
 # lowercase
 data = [message.lower() for message in data]
-
-# removes non-ascii characters
-data = [message.encode('ascii',errors='ignore').decode() for message in data]
+# Replace new lintes with spaces
+data = [message.replace('\n', ' ') for message in data]
+# Remove empty messages
+data = [message for message in data if message != '']
 
 # Shuffle data
 import random
 random.seed(369)
 random.shuffle(data)
 
-# Split into a training, and test set
-train = data[:int(len(data) * 0.8)]
-test = data[int(len(data) * 0.8):]
+# Limit data size
+size = input('Size: ')
+if size != '':
+    dataset = data[:int(size)]
+else:
+    dataset = data
 
+# Asks user if they want a validation set
+validation = input('Validation: ').lower() == 'y'
+print('Using validation set' if validation else 'Not using validation set')
+if validation:
+    # Split into a training, validation, and test set
+    train = data[:int(len(data) * 0.6)]
+    validation = data[int(len(data) * 0.6):int(len(data) * 0.8)]
+    test = data[int(len(data) * 0.8):]
+else:
+    # Split into a training, and test set
+    train = data[:int(len(data) * 0.8)]
+    test = data[int(len(data) * 0.8):]
 
 # Get word frequencies
 def get_word_frequencies(data):
@@ -166,6 +182,9 @@ if file_type == 'txt':
         f.write('\n'.join(train))
     with open(f'data/{filename}_test.txt', 'w') as f:
         f.write('\n'.join(test))
+    if validation:
+        with open(f'data/{filename}_val.txt', 'w') as f:
+            f.write('\n'.join(validation))
 elif file_type == 'json':
     train_cases = get_cases(train, word_frequencies)
     test_cases = get_cases(test, word_frequencies)
@@ -174,5 +193,9 @@ elif file_type == 'json':
         json.dump(train, f)
     with open(f'data/{filename}_test.json', 'w') as f:
         json.dump(test, f)
+    if validation:
+        validation_cases = get_cases(validation, word_frequencies)
+        with open(f'data/{filename}_validation.json', 'w') as f:
+            json.dump(validation, f)
 else:
     print('Invalid file type')
