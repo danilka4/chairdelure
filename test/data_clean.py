@@ -98,10 +98,15 @@ data = [remove_extra_spaces(message) for message in data]
 # lowercase
 data = [message.lower() for message in data]
 
-# Split into a training, validation, and test set
+# Shuffle data
+import random
+random.seed(369)
+random.shuffle(data)
+
+# Split into a training, and test set
 train = data[:int(len(data) * 0.8)]
-val = data[int(len(data) * 0.8):int(len(data) * 0.9)]
-test = data[int(len(data) * 0.9):]
+test = data[int(len(data) * 0.8):]
+
 
 # Get word frequencies
 def get_word_frequencies(data):
@@ -118,12 +123,12 @@ word_frequencies = get_word_frequencies(data)
 
 # Take each message and create every case
 # For example "Hello my name is Molly." ->
-# - ("", "Hello", freq("Hello")"))
-# - ("Hello", "my", freq("my"))
-# - ("Hello my", "name", freq("name"))
-# - ("Hello my name", "is", freq("is"))
-# - ("Hello my name is", "Molly", freq("Molly"))
-# - ("Hello my name is Molly", ".", freq("."))
+# - ("", "Hello")
+# - ("Hello", "my")
+# - ("Hello my", "name")
+# - ("Hello my name", "is")
+# - ("Hello my name is", "Molly")
+# - ("Hello my name is Molly", ".")
 def get_cases(data, frequencies):
     cases = []
     for message in data:
@@ -135,10 +140,21 @@ def get_cases(data, frequencies):
             cases.append((context, word, frequency))
     return cases
 
-train_cases = get_cases(train)
-val_cases = get_cases(val)
-test_cases = get_cases(test)
+if input('Create unique cases?') == 'y':
+    train_cases = get_cases(train)
+    val_cases = get_cases(val)
+    test_cases = get_cases(test)
 
-print(f'Train: {len(train_cases)}')
-print(f'Val: {len(val_cases)}')
-print(f'Test: {len(test_cases)}')
+    print(f'Train: {len(train_cases)}')
+    print(f'Val: {len(val_cases)}')
+    print(f'Test: {len(test_cases)}')
+
+file_type = input('File Type: ')
+
+if file_type == 'txt':
+    with open(f'data/{filename}_train.txt', 'w') as f:
+        f.write('\n'.join(train))
+    with open(f'data/{filename}_test.txt', 'w') as f:
+        f.write('\n'.join(test))
+else:
+    print('Invalid file type')
