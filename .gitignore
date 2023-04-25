@@ -81,3 +81,6 @@ venv.bak/
 
 # Dev editor
 .vscode
+
+# Binary weight files
+*.bin
