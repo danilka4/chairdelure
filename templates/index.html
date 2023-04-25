@@ -1,7 +1,7 @@
 <!-- Insert header.html -->
 {% include "header.html" %}
     <main style="padding: 40px; text-align: center;">
-        <form action="/model" method="POST" style="display: inline-block; text-align: left;">
+        <form style="display: inline-block; text-align: left;">
           <label for="model" style="display: inline-block; margin-right: 8px; background-color:#250327; color: #ffffff;">Model:</label>
           <select id="model" name="model" style="background-color:#250327; border: 1px solid #fff; color: #ffffff;">
               <option value="molly">Molly</option>
@@ -9,31 +9,47 @@
               <option value="chris">Chris</option>
           </select>
           <br><br>
-          <textarea name="text" placeholder="Enter starting text" rows="3" cols="30" style="color: #ffffff; background-color: #250327; width: 100%; border: 1px solid #fff;"></textarea>
+          <textarea id="input-text" name="text" placeholder="Enter starting text" rows="3" cols="30" style="color: #ffffff; background-color: #250327; width: 100%; border: 1px solid #fff;"></textarea>
           <br><br>
-          <input type="submit" value="Submit" style="background-color: #250327; border: 1px solid #fff; border-radius: 5px; color: #ffffff; cursor: pointer; padding: 8px 12px;">
-          
         </form>
-        <div id="result" style="color: #ffffff; border-radius: 5px; margin: 10px;  padding: 8px 12px;">
+        <div id="result" style="color: #ffffff; border-radius: 5px; margin: 10px; padding: 8px 12px;">
         </div>
     </main>
 </body>
 </html>
 <script>
-  var form = document.querySelector('form');
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    var data = new FormData(form);
-    fetch('/model', {
-      method: 'POST',
-      body: data
-    }).then(function(response) {
-      // get the response body (the method explained below)
-      // response is json object with body in output
-      return response.json().then(data => data.output)
+  const inputText = document.getElementById('input-text');
+  const result = document.getElementById('result');
+  let timeout = null;
 
-    }).then(function(text) {
-      document.querySelector('#result').innerHTML = text;
-    });
+  inputText.addEventListener('input', (e) => {
+    clearTimeout(timeout);
+    // Clear the result
+    result.innerHTML = '';
+    timeout = setTimeout(() => {
+      const data = new FormData();
+      data.append('model', document.getElementById('model').value);
+      data.append('text', inputText.value);
+
+      fetch('/model', {
+        method: 'POST',
+        body: data
+      }).then((response) => {
+        return response.json().then(data => data.output)
+      }).then((text) => {
+        result.innerHTML = `<span style="opacity: 0.5;">${text}</span>`;
+      });
+    }, 1000);
+  });
+
+  inputText.addEventListener('keydown', (e) => {
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      inputText.value += result.innerText;
+      // Remove the tab from the input
+      inputText.value = inputText.value.replace(/\t/g, '');
+      // Clear the result
+      result.innerHTML = '';
+    }
   });
 </script>
