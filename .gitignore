@@ -84,3 +84,6 @@ venv.bak/
 
 # Binary weight files
 *.bin
+
+gpt2_custom/
+venv-deb/
