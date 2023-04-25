@@ -137,17 +137,14 @@ def get_cases(data, frequencies):
             context = ' '.join(words[:i])
             word = words[i]
             frequency = frequencies[word]
-            cases.append((context, word, frequency))
+            # cases.append((context, word, frequency))
+            # json
+            cases.append({
+                'context': context,
+                'word': word,
+                'frequency': frequency
+            })
     return cases
-
-if input('Create unique cases?') == 'y':
-    train_cases = get_cases(train)
-    val_cases = get_cases(val)
-    test_cases = get_cases(test)
-
-    print(f'Train: {len(train_cases)}')
-    print(f'Val: {len(val_cases)}')
-    print(f'Test: {len(test_cases)}')
 
 file_type = input('File Type: ')
 
@@ -156,5 +153,13 @@ if file_type == 'txt':
         f.write('\n'.join(train))
     with open(f'data/{filename}_test.txt', 'w') as f:
         f.write('\n'.join(test))
+elif file_type == 'json':
+    train_cases = get_cases(train, word_frequencies)
+    test_cases = get_cases(test, word_frequencies)
+
+    with open(f'data/{filename}_train.json', 'w') as f:
+        json.dump(train, f)
+    with open(f'data/{filename}_test.json', 'w') as f:
+        json.dump(test, f)
 else:
     print('Invalid file type')
