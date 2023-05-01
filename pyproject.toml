@@ -20,7 +20,7 @@ dependencies = [
     "emoji",
     "executing==1.2.0", 
     "filelock==3.9.0", 
-    "flask",
+    "flask>=2.3.2",
     "fonttools==4.39.0", 
     "gensim",
     "ipython==8.11.0", 

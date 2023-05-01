@@ -32,6 +32,8 @@ backcall==0.2.0
     # via
     #   Chairdelure (pyproject.toml)
     #   ipython
+blinker==1.6.2
+    # via flask
 blis==0.7.9
     # via thinc
 cachetools==5.3.0
@@ -93,7 +95,7 @@ filelock==3.9.0
     #   torch
     #   transformers
     #   virtualenv
-flask==2.2.4
+flask==2.3.2
     # via Chairdelure (pyproject.toml)
 flatbuffers==23.3.3
     # via tensorflow
@@ -444,7 +446,7 @@ wcwidth==0.2.6
     # via
     #   Chairdelure (pyproject.toml)
     #   prompt-toolkit
-werkzeug==2.2.3
+werkzeug==2.3.3
     # via
     #   flask
     #   tensorboard
