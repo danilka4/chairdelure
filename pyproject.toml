@@ -81,11 +81,11 @@ ignore = ["E501"]
 select = ["E", "F", "I", "W"]
 line-length = 79
 fixable = ["I"]
-exclude = [".env", ".venv", "venv", "notebooks"]
+exclude = [".env", ".venv", "venv"]
 show-source = true
 
 [tool.coverage.paths]
-source = ["src"]
+source = ["test", "notebooks", "discord_bot"]
 
 [tool.coverage.run]
 branch = true
@@ -102,6 +102,5 @@ extend-exclude = '''
   | .env
   | .venv
   | venv
-  | notebooks
 )/
 '''
