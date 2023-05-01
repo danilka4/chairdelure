@@ -2,6 +2,7 @@ import os
 from re import split
 
 import discord
+import markovify
 from discord.ext import commands
 from dotenv import load_dotenv
 
@@ -20,8 +21,18 @@ class DiscordGPT(commands.Bot):
         except Exception:
             print("Failed to load commands.")
 
+    async def load_models(self):
+        """Load/train markov and GPT-2 models"""
+        with open("../data/output_train.txt") as f:
+            text = f.read()
+        # trains model on newlines indicating a "sentence"
+        self.markov_model = markovify.NewlineText(text, state_size=3)
+        print("Successfully trained models.")
+
+
     async def on_connect(self):
         await self.load_extensions()
+        await self.load_models()
 
     async def on_ready(self):
         """Bot startup"""
