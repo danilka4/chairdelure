@@ -9,7 +9,9 @@ absl-py==1.4.0
     #   tensorboard
     #   tensorflow
 aiohttp==3.8.4
-    # via discord-py
+    # via
+    #   discord-py
+    #   openai
 aiosignal==1.3.1
     # via aiohttp
 appnope==0.1.3
@@ -30,8 +32,15 @@ backcall==0.2.0
     # via
     #   Chairdelure (pyproject.toml)
     #   ipython
+blis==0.7.9
+    # via thinc
 cachetools==5.3.0
     # via google-auth
+catalogue==2.0.8
+    # via
+    #   spacy
+    #   srsly
+    #   thinc
 certifi==2022.12.7
     # via
     #   Chairdelure (pyproject.toml)
@@ -41,6 +50,13 @@ charset-normalizer==3.1.0
     # via
     #   aiohttp
     #   requests
+click==8.1.3
+    # via
+    #   flask
+    #   nltk
+    #   typer
+confection==0.0.4
+    # via thinc
 contourpy==1.0.7
     # via
     #   Chairdelure (pyproject.toml)
@@ -49,6 +65,11 @@ cycler==0.11.0
     # via
     #   Chairdelure (pyproject.toml)
     #   matplotlib
+cymem==2.0.7
+    # via
+    #   preshed
+    #   spacy
+    #   thinc
 decorator==5.1.1
     # via
     #   Chairdelure (pyproject.toml)
@@ -59,6 +80,8 @@ distlib==0.3.6
     # via
     #   Chairdelure (pyproject.toml)
     #   virtualenv
+emoji==2.2.0
+    # via Chairdelure (pyproject.toml)
 executing==1.2.0
     # via
     #   Chairdelure (pyproject.toml)
@@ -66,7 +89,12 @@ executing==1.2.0
 filelock==3.9.0
     # via
     #   Chairdelure (pyproject.toml)
+    #   huggingface-hub
+    #   torch
+    #   transformers
     #   virtualenv
+flask==2.2.4
+    # via Chairdelure (pyproject.toml)
 flatbuffers==23.3.3
     # via tensorflow
 fonttools==4.39.0
@@ -77,8 +105,12 @@ frozenlist==1.3.3
     # via
     #   aiohttp
     #   aiosignal
+fsspec==2023.4.0
+    # via huggingface-hub
 gast==0.4.0
     # via tensorflow
+gensim==4.3.1
+    # via Chairdelure (pyproject.toml)
 google-auth==2.16.2
     # via
     #   google-auth-oauthlib
@@ -93,48 +125,78 @@ grpcio==1.51.3
     #   tensorflow
 h5py==3.8.0
     # via tensorflow
+huggingface-hub==0.14.1
+    # via transformers
 idna==3.4
     # via
     #   requests
     #   yarl
 ipython==8.11.0
     # via Chairdelure (pyproject.toml)
+itsdangerous==2.1.2
+    # via flask
 jax==0.4.6
     # via tensorflow
 jedi==0.18.2
     # via
     #   Chairdelure (pyproject.toml)
     #   ipython
+jinja2==3.1.2
+    # via
+    #   flask
+    #   spacy
+    #   torch
 joblib==1.2.0
     # via
     #   Chairdelure (pyproject.toml)
+    #   nltk
     #   scikit-learn
+    #   word2vec
 keras==2.12.0rc1
     # via tensorflow
 kiwisolver==1.4.4
     # via
     #   Chairdelure (pyproject.toml)
     #   matplotlib
+langcodes==3.3.0
+    # via spacy
 libclang==15.0.6.1
     # via tensorflow
 markdown==3.4.1
     # via tensorboard
+markovify==0.9.4
+    # via Chairdelure (pyproject.toml)
 markupsafe==2.1.2
-    # via werkzeug
+    # via
+    #   jinja2
+    #   werkzeug
 matplotlib==3.7.1
     # via Chairdelure (pyproject.toml)
 matplotlib-inline==0.1.6
     # via
     #   Chairdelure (pyproject.toml)
     #   ipython
+mpmath==1.3.0
+    # via sympy
 multidict==6.0.4
     # via
     #   aiohttp
     #   yarl
+murmurhash==1.0.9
+    # via
+    #   preshed
+    #   spacy
+    #   thinc
+networkx==3.1
+    # via torch
+nltk==3.8.1
+    # via Chairdelure (pyproject.toml)
 numpy==1.23.5
     # via
     #   Chairdelure (pyproject.toml)
+    #   blis
     #   contourpy
+    #   gensim
     #   h5py
     #   jax
     #   matplotlib
@@ -142,10 +204,17 @@ numpy==1.23.5
     #   pandas
     #   scikit-learn
     #   scipy
+    #   spacy
     #   tensorboard
     #   tensorflow
+    #   thinc
+    #   torchvision
+    #   transformers
+    #   word2vec
 oauthlib==3.2.2
     # via requests-oauthlib
+openai==0.27.5
+    # via Chairdelure (pyproject.toml)
 opt-einsum==3.3.0
     # via
     #   jax
@@ -153,14 +222,20 @@ opt-einsum==3.3.0
 packaging==23.0
     # via
     #   Chairdelure (pyproject.toml)
+    #   huggingface-hub
     #   matplotlib
+    #   spacy
     #   tensorflow
+    #   thinc
+    #   transformers
 pandas==1.5.3
     # via Chairdelure (pyproject.toml)
 parso==0.8.3
     # via
     #   Chairdelure (pyproject.toml)
     #   jedi
+pathy==0.10.1
+    # via spacy
 pexpect==4.8.0
     # via
     #   Chairdelure (pyproject.toml)
@@ -173,12 +248,17 @@ pillow==9.4.0
     # via
     #   Chairdelure (pyproject.toml)
     #   matplotlib
+    #   torchvision
 pipenv==2023.2.18
     # via Chairdelure (pyproject.toml)
 platformdirs==3.1.1
     # via
     #   Chairdelure (pyproject.toml)
     #   virtualenv
+preshed==3.0.8
+    # via
+    #   spacy
+    #   thinc
 prompt-toolkit==3.0.38
     # via
     #   Chairdelure (pyproject.toml)
@@ -201,6 +281,11 @@ pyasn1==0.4.8
     #   rsa
 pyasn1-modules==0.2.8
     # via google-auth
+pydantic==1.10.7
+    # via
+    #   confection
+    #   spacy
+    #   thinc
 pygments==2.14.0
     # via
     #   Chairdelure (pyproject.toml)
@@ -220,10 +305,23 @@ pytz==2022.7.1
     # via
     #   Chairdelure (pyproject.toml)
     #   pandas
+pyyaml==6.0
+    # via
+    #   huggingface-hub
+    #   transformers
+regex==2023.3.23
+    # via
+    #   nltk
+    #   transformers
 requests==2.28.2
     # via
+    #   huggingface-hub
+    #   openai
     #   requests-oauthlib
+    #   spacy
     #   tensorboard
+    #   torchvision
+    #   transformers
 requests-oauthlib==1.3.1
     # via google-auth-oauthlib
 rsa==4.9
@@ -233,6 +331,7 @@ scikit-learn==1.2.1
 scipy==1.10.1
     # via
     #   Chairdelure (pyproject.toml)
+    #   gensim
     #   jax
     #   scikit-learn
 six==1.16.0
@@ -244,10 +343,28 @@ six==1.16.0
     #   google-pasta
     #   python-dateutil
     #   tensorflow
+smart-open==6.3.0
+    # via
+    #   gensim
+    #   pathy
+    #   spacy
+spacy==3.5.2
+    # via Chairdelure (pyproject.toml)
+spacy-legacy==3.0.12
+    # via spacy
+spacy-loggers==1.0.4
+    # via spacy
+srsly==2.4.6
+    # via
+    #   confection
+    #   spacy
+    #   thinc
 stack-data==0.6.2
     # via
     #   Chairdelure (pyproject.toml)
     #   ipython
+sympy==1.11.1
+    # via torch
 tensorboard==2.12.0
     # via tensorflow
 tensorboard-data-server==0.7.0
@@ -262,21 +379,53 @@ tensorflow-io-gcs-filesystem==0.31.0
     # via tensorflow
 termcolor==2.2.0
     # via tensorflow
+thinc==8.1.9
+    # via spacy
 threadpoolctl==3.1.0
     # via
     #   Chairdelure (pyproject.toml)
     #   scikit-learn
 tokenize-rt==5.0.0
     # via Chairdelure (pyproject.toml)
+tokenizers==0.13.3
+    # via transformers
 tomli==2.0.1
     # via Chairdelure (pyproject.toml)
+torch==2.0.0
+    # via
+    #   Chairdelure (pyproject.toml)
+    #   torchaudio
+    #   torchvision
+torchaudio==2.0.1
+    # via Chairdelure (pyproject.toml)
+torchvision==0.15.1
+    # via Chairdelure (pyproject.toml)
+tqdm==4.65.0
+    # via
+    #   huggingface-hub
+    #   nltk
+    #   openai
+    #   spacy
+    #   transformers
 traitlets==5.9.0
     # via
     #   Chairdelure (pyproject.toml)
     #   ipython
     #   matplotlib-inline
+transformers==4.28.1
+    # via Chairdelure (pyproject.toml)
+typer==0.7.0
+    # via
+    #   pathy
+    #   spacy
 typing-extensions==4.5.0
-    # via tensorflow
+    # via
+    #   huggingface-hub
+    #   pydantic
+    #   tensorflow
+    #   torch
+unidecode==1.3.6
+    # via markovify
 urllib3==1.26.15
     # via requests
 virtualenv==20.20.0
@@ -287,16 +436,24 @@ virtualenv-clone==0.5.7
     # via
     #   Chairdelure (pyproject.toml)
     #   pipenv
+wasabi==1.1.1
+    # via
+    #   spacy
+    #   thinc
 wcwidth==0.2.6
     # via
     #   Chairdelure (pyproject.toml)
     #   prompt-toolkit
 werkzeug==2.2.3
-    # via tensorboard
+    # via
+    #   flask
+    #   tensorboard
 wheel==0.40.0
     # via
     #   astunparse
     #   tensorboard
+word2vec==0.11.1
+    # via Chairdelure (pyproject.toml)
 wrapt==1.14.1
     # via tensorflow
 yarl==1.8.2

@@ -1,45 +1,53 @@
 import flask
+
 app = flask.Flask(__name__)
 
+
 def molly(text):
-    return ' pensive'
+    return " pensive"
+
 
 def daniel(text):
-    return ' blegh'
+    return " blegh"
+
 
 def chris(text):
-    return ' hmm'
+    return " hmm"
+
 
 # Run input on model
-@app.route('/model', methods=['POST'])
+@app.route("/model", methods=["POST"])
 def model():
     try:
         # Get form data
-        selected_model = flask.request.form.get('model')
-        text = flask.request.form.get('text')
+        selected_model = flask.request.form.get("model")
+        text = flask.request.form.get("text")
 
         # Run model
-        if selected_model == 'molly':
+        if selected_model == "molly":
             output = molly(text)
-        elif selected_model == 'daniel':
+        elif selected_model == "daniel":
             output = daniel(text)
-        elif selected_model == 'chris':
+        elif selected_model == "chris":
             output = chris(text)
         else:
-            output = 'Error: Invalid model'
+            output = "Error: Invalid model"
         # Return output as JSON
-        return flask.jsonify({'output': output})
+        return flask.jsonify({"output": output})
 
     except Exception as e:
-        return flask.jsonify({'error': str(e)})
+        return flask.jsonify({"error": str(e)})
+
 
 # Show about page
-@app.route('/about')
+@app.route("/about")
 def about():
-    return flask.render_template('about.html')
+    return flask.render_template("about.html")
 
-@app.route('/')
+
+@app.route("/")
 def hello():
-    return flask.render_template('index.html')
+    return flask.render_template("index.html")
+
 
 app.run()

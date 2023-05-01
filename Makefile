@@ -1,3 +1,5 @@
+# Makefile by Chris Bonner and github/duarteocarmo
+
 .PHONY: install clean lint format 
 
 ## Install for production

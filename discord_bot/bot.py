@@ -29,7 +29,6 @@ class DiscordGPT(commands.Bot):
         self.markov_model = markovify.NewlineText(text, state_size=3)
         print("Successfully trained models.")
 
-
     async def on_connect(self):
         await self.load_extensions()
         await self.load_models()
@@ -48,7 +47,7 @@ class DiscordGPT(commands.Bot):
 
 
 def main():
-    # Pulls bot token from environment 
+    # Pulls bot token from environment
     load_dotenv()
     TOKEN = os.getenv("DISCORD_TOKEN")
 
