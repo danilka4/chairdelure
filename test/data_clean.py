@@ -5,7 +5,7 @@ from datetime import datetime
 
 import emoji
 
-filename = 'output'
+filename = 'molly'
 
 def read_csv(filename):
     with open(filename, 'r') as f:
