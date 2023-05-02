@@ -92,7 +92,7 @@ def evaluate_accuracy(test_file_path):
     return accuracy
 
 
-test_file_path = "data/molly_test.txt"
-print("Evaluating Accuracy")
-accuracy = evaluate_accuracy(test_file_path)
-print(f"\nAccuracy: {accuracy:.2%}")
+# test_file_path = "data/molly_test.txt"
+# print("Evaluating Accuracy")
+# accuracy = evaluate_accuracy(test_file_path)
+# print(f"\nAccuracy: {accuracy:.2%}")
