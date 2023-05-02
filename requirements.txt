@@ -13,6 +13,13 @@ attrs==22.2.0
 backcall==0.2.0
 beautifulsoup4==4.12.2
 bleach==6.0.0
+    # via
+    #   Chairdelure (pyproject.toml)
+    #   ipython
+blinker==1.6.2
+    # via flask
+blis==0.7.9
+    # via thinc
 cachetools==5.3.0
 certifi==2022.12.7
 cffi==1.15.1
@@ -30,6 +37,14 @@ emoji==2.2.0
 executing==1.2.0
 fastjsonschema==2.16.3
 filelock==3.9.0
+    # via
+    #   Chairdelure (pyproject.toml)
+    #   huggingface-hub
+    #   torch
+    #   transformers
+    #   virtualenv
+flask==2.3.2
+    # via Chairdelure (pyproject.toml)
 flatbuffers==23.3.3
 fonttools==4.39.0
 fqdn==1.5.1
@@ -154,7 +169,19 @@ wcwidth==0.2.6
 webcolors==1.13
 webencodings==0.5.1
 websocket-client==1.5.1
-Werkzeug==2.2.3
+    # via
+    #   Chairdelure (pyproject.toml)
+    #   prompt-toolkit
+werkzeug==2.3.3
+    # via
+    #   flask
+    #   tensorboard
+wheel==0.40.0
+    # via
+    #   astunparse
+    #   tensorboard
+word2vec==0.11.1
+    # via Chairdelure (pyproject.toml)
 wrapt==1.14.1
 yarl==1.8.2
 zipp==3.15.0

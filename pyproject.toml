@@ -20,7 +20,7 @@ dependencies = [
     "emoji",
     "executing==1.2.0", 
     "filelock==3.9.0", 
-    "flask",
+    "flask>=2.3.2",
     "fonttools==4.39.0", 
     "gensim",
     "ipython==8.11.0", 
@@ -81,11 +81,11 @@ ignore = ["E501"]
 select = ["E", "F", "I", "W"]
 line-length = 79
 fixable = ["I"]
-exclude = [".env", ".venv", "venv", "notebooks"]
+exclude = [".env", ".venv", "venv"]
 show-source = true
 
 [tool.coverage.paths]
-source = ["src"]
+source = ["test", "notebooks", "discord_bot"]
 
 [tool.coverage.run]
 branch = true
@@ -102,6 +102,5 @@ extend-exclude = '''
   | .env
   | .venv
   | venv
-  | notebooks
 )/
 '''
