@@ -40,3 +40,7 @@ Afterwards, it is a matter of calling `model.generate()` with some input text an
 The model for the PCA can be found in the notebooks directory while the Markov model can be found in the test directory as "test.py."
 Code on the discord bot can be found in the discord_bot directory.
 Interaction with the gpt3 model can be found in "train_model.sh"
+
+## Flask App
+
+Run `appy.py`. Webpage will be at 127.0.0.1:5000
