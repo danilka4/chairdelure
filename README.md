@@ -28,6 +28,8 @@ To run the expiremental 3 word test: `python3 ./test/expirements.py`. This test 
 
 ## LLaMA User-LoRA Model - Daniel
 
+If making your own train/test cases, use the process described in the GPT2 section with `data_clean.py` to create the needed txt files.
+
 To run the LLaMA Model with custom LoRA user weights, it is recommended to run it inside google colab.
 If following the colab notebook for this model (found in `notebooks/LoRa.ipynb`), essentially just follow all the steps in the "generation" section using a GPU.
 First, download the appropriate transformers library, since the current one does not have LLaMA (yet). 
