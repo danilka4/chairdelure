@@ -1,7 +1,8 @@
-print('imports')
+print("imports")
 import os
-from transformers import GPT2LMHeadModel, GPT2Tokenizer
 import random
+
+from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
 model_name = "./gpt2_custom"
 print("Loading Tokenizer")
@@ -10,7 +11,7 @@ print("Loading Model")
 model = GPT2LMHeadModel.from_pretrained(model_name)
 
 
-def generate_word_recommendations(prompt, extra_tokens=5, words = 1):
+def generate_word_recommendations(prompt, extra_tokens=5, words=1):
     prompt = prompt[-1024:]
     input_ids = tokenizer.encode(prompt, return_tensors="pt")
 
@@ -38,9 +39,9 @@ def generate_word_recommendations(prompt, extra_tokens=5, words = 1):
         attention_mask=attention_mask,  # Pass attention_mask
     )
 
-
-
-    generated_text = [tokenizer.decode(o, skip_special_tokens=True) for o in output]
+    generated_text = [
+        tokenizer.decode(o, skip_special_tokens=True) for o in output
+    ]
     return generated_text
 
 
@@ -55,7 +56,7 @@ def get_cases(data):
     return cases
 
 
-def evaluate_accuracy(test_file_path, words = 1):
+def evaluate_accuracy(test_file_path, words=1):
     total_count = 0
     correct_count = 0
 
@@ -70,14 +71,16 @@ def evaluate_accuracy(test_file_path, words = 1):
             print("Expected Word: ", expected_word)
             p_len = len(prompt.split(" "))
             print("Prompt Length: ", p_len)
-            generated_text = generate_word_recommendations(prompt, words = words)
+            generated_text = generate_word_recommendations(prompt, words=words)
             print("Generated Text: ", generated_text)
             generated_text = [
                 g.replace("-", " ")
                 .replace("_", " ")
                 .replace("\n", " ")
-                .split() for g in generated_text]
-            
+                .split()
+                for g in generated_text
+            ]
+
             generated_words = []
             for g in generated_text:
                 try:
@@ -102,5 +105,5 @@ def evaluate_accuracy(test_file_path, words = 1):
 
 test_file_path = "data/molly_test.txt"
 print("Evaluating Accuracy")
-accuracy = evaluate_accuracy(test_file_path, words = 3)
+accuracy = evaluate_accuracy(test_file_path, words=3)
 print(f"\nAccuracy: {accuracy:.2%}")

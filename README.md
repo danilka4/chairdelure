@@ -4,14 +4,18 @@ Virginia Tech Capstone Project
 If using `extract_messages.sh`, then put your discord data `package.zip` in your data folder.
 That way it is not tracked by git and the shell script works.
 
-## Development
+## Running
 
 1. Make sure you are running in a virtual environment (e.g., `python3 -m venv .env`)
 2. Activate it (e.g. `source .env/bin/activate`)
+3. Install the dependencies (e.g. `make install`)
+4. Run the message extraction script (e.g. `./scripts/extract_messages.sh output.csv`)
+5. Edit the name of your file in `test/data_clean.py` and run it (e.g. `cd test; python data_clean.py`)
 
-```shell
-(.env) $ make install-dev
-```
+### Markov Model
+To run the markov model, change the file name in `test/markov.py` and run `cd test; python markov.py`. You will be given an output sentence based on 
+your input "start words" for the model (1-2 words). To stop the model, type `n` into the input. Testing can be 
+
 
 ## Models
 
