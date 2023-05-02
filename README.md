@@ -22,6 +22,3 @@ your input "start words" for the model (1-2 words). To stop the model, type `n` 
 The model for the PCA can be found in the notebooks directory while the Markov model can be found in the test directory as "test.py."
 Code on the discord bot can be found in the discord_bot directory.
 Interaction with the gpt3 model can be found in "train_model.sh"
-
-The one version of these open source/open source adjacent LLM's that we were able to run was [alpaca.cpp](https://github.com/antimatter15/alpaca.cpp).
-Alpaca.cpp 
