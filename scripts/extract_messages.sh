@@ -1,4 +1,4 @@
-if [ ! -f "data/package.zip" ]; then
+if [ ! -f "../data/package.zip" ]; then
     echo "Name your file package.zip inside the data folder"
     exit 1
 fi

@@ -6,7 +6,6 @@ with open("../data/output_train.txt") as f:
 text_mod = markovify.Text(text)
 
 
-
 for i in range(5):
     print(text_mod.make_sentence())
 
